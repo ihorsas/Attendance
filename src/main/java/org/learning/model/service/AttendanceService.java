@@ -1,24 +1,24 @@
 package org.learning.model.service;
 
 import org.learning.model.dao.implementation.AttendanceDaoImpl;
-import org.learning.model.dao.interfaces.InterfaceDao;
+import org.learning.model.dao.AbstractDao;
 import org.learning.model.model.Attendance;
 
 import java.util.List;
 
 public class AttendanceService {
-  private final InterfaceDao<Attendance, Integer> dao;
+  private final AbstractDao<Attendance, Integer> dao;
 
   public AttendanceService() {
     dao = new AttendanceDaoImpl();
   }
 
-  public void createAttendance(Attendance attendance) {
-    dao.persist(attendance);
+  public Attendance createAttendance(Attendance attendance) {
+    return dao.merge(attendance);
   }
 
-  public void updateAttendance(Attendance attendance) {
-    dao.persist(attendance);
+  public Attendance updateAttendance(Attendance attendance) {
+    return dao.merge(attendance);
   }
 
   public Attendance findAttendanceById(Integer id) {

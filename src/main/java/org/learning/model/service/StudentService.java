@@ -1,24 +1,24 @@
 package org.learning.model.service;
 
 import org.learning.model.dao.implementation.StudentDaoImpl;
-import org.learning.model.dao.interfaces.InterfaceDao;
+import org.learning.model.dao.AbstractDao;
 import org.learning.model.model.Student;
 
 import java.util.List;
 
 public class StudentService {
-  private final InterfaceDao<Student, Integer> dao;
+  private final AbstractDao<Student, Integer> dao;
 
   public StudentService() {
     dao = new StudentDaoImpl();
   }
 
-  public void createStudent(Student student) {
-    dao.persist(student);
+  public Student createStudent(Student student) {
+    return dao.merge(student);
   }
 
-  public void updateStudent(Student student) {
-    dao.persist(student);
+  public Student updateStudent(Student student) {
+    return dao.merge(student);
   }
 
   public Student findStudentById(Integer id) {

@@ -1,24 +1,24 @@
 package org.learning.model.service;
 
 import org.learning.model.dao.implementation.SubjectDaoImpl;
-import org.learning.model.dao.interfaces.InterfaceDao;
+import org.learning.model.dao.AbstractDao;
 import org.learning.model.model.Subject;
 
 import java.util.List;
 
 public class SubjectService {
-  private final InterfaceDao<Subject, Integer> dao;
+  private final AbstractDao<Subject, Integer> dao;
 
   public SubjectService() {
     dao = new SubjectDaoImpl();
   }
 
-  public void createSubject(Subject subject) {
-    dao.persist(subject);
+  public Subject createSubject(Subject subject) {
+    return dao.merge(subject);
   }
 
-  public void updateSubject(Subject subject) {
-    dao.persist(subject);
+  public Subject updateSubject(Subject subject) {
+    return dao.merge(subject);
   }
 
   public Subject findSubjectById(Integer id) {

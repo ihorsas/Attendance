@@ -1,43 +1,60 @@
-package org.learning.model.dao.interfaces;
+package org.learning.model.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.learning.model.util.HibernateSessionFactoryUtil;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
-public abstract class AbstractDao<T, Id extends Serializable> implements InterfaceDao<T, Id> {
-  private Class<T> typeClass;
+public abstract class AbstractDao<T, Id extends Serializable> {
 
   protected Session currentSession;
   protected Transaction currentTransaction;
+  private Class<T> typeClass;
 
   public final void setClasses(final Class<T> typeClass) {
     this.typeClass = typeClass;
   }
 
-  public void persist(T entity) {
-    openCurrentSessionWithTransaction().save(entity);
-    this.closeCurrentSessionWithTransaction();
+  public T merge(T entity) {
+    T obj = null;
+    try {
+      obj = openCurrentSessionWithTransaction().merge(entity);
+    } finally {
+      this.closeCurrentSessionWithTransaction();
+    }
+    return obj;
   }
 
   public T findById(Id id) {
-    T obj = openCurrentSession().get(typeClass, id);
-    this.closeCurrentSession();
+    T obj = null;
+    try {
+      obj = openCurrentSession().get(typeClass, id);
+    } finally {
+      this.closeCurrentSession();
+    }
     return obj;
   }
 
   public void remove(T entity) {
-    openCurrentSessionWithTransaction().remove(entity);
-    this.closeCurrentSessionWithTransaction();
+    try {
+      openCurrentSessionWithTransaction().remove(entity);
+    } finally {
+      this.closeCurrentSessionWithTransaction();
+    }
   }
 
   public List<T> findAll() {
-    List<T> objs = openCurrentSession()
-        .createQuery("from " + typeClass.getName(), typeClass)
-        .list();
-    this.closeCurrentSession();
+    List<T> objs = Collections.emptyList();
+    try {
+      objs = openCurrentSession()
+          .createQuery("from " + typeClass.getName(), typeClass)
+          .list();
+    } finally {
+      this.closeCurrentSession();
+    }
     return objs;
   }
 
