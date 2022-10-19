@@ -18,6 +18,8 @@ import java.util.Objects;
 public class StudentServlet extends HttpServlet {
 
   private final StudentService service;
+  private Gson gson = new Gson();
+
 
   public StudentServlet() {
     service = new StudentService();
@@ -47,8 +49,15 @@ public class StudentServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     try {
-      Student student = new Gson().fromJson(request.getReader(), Student.class);
-      service.createStudent(student);
+      Student student = gson.fromJson(request.getReader(), Student.class);
+      student = service.createStudent(student);
+      String studentJson = gson.toJson(student);
+
+      PrintWriter out = response.getWriter();
+      response.setContentType("application/json");
+      response.setCharacterEncoding("UTF-8");
+      out.print(studentJson);
+      out.flush();
     } catch (JsonParseException e) {
       response.setStatus(400);
     } catch (Exception e) {
