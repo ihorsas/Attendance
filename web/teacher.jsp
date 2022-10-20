@@ -8,13 +8,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>New student form</title>
-    <script type="module" src="js/student.js"></script>
+    <title>New teacher form</title>
+    <script type="module" src="js/teacher.js"></script>
 
 </head>
 <body>
 <div>
-    <h3><p>Enter new student</p></h3>
+    <h3><p>Enter new teacher</p></h3>
     <p>First name:</p>
     <input type="text" id="firstName">
     <p>Last name:</p>
@@ -23,11 +23,9 @@
     <input type="text" id="email">
     <p>Birthday:</p>
     <input type="date" id="birthday">
-    <p>Joining date:</p>
-    <input type="date" id="joiningDate">
     <br><br>
-    <button id="create-student">Submit</button>
+    <button id="create-teacher">Submit</button>
 </div>
-<div id="created-student"></div>
+<div id="created-teacher"></div>
 </body>
 </html>

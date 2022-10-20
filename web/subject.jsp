@@ -8,18 +8,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>New subject form</title>
-  <script type="module" src="js/subject.js"></script>
+    <title>New subject form</title>
+    <script type="module" src="js/subject.js"></script>
 
 </head>
 <body>
- <h3><p>Enter new subject</p></h3>
-  <p>Name:</p>
-  <input type="text" id="name">
-  <p>Credits:</p>
-  <input type="number" id="credit">
-  <br><br>
-  <button id="create-subject">Submit</button>
-  <div id="created-subject"></div>
+<div>
+    <h3><p>Enter new subject</p></h3>
+    <p>Name:</p>
+    <input type="text" id="name">
+    <p>Credits:</p>
+    <input type="number" id="credit">
+    <br><br>
+    <button id="create-subject">Submit</button>
+</div>
+<div id="created-subject"></div>
 </body>
 </html>

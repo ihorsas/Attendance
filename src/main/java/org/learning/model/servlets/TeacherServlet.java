@@ -7,22 +7,22 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.learning.model.model.Student;
-import org.learning.model.service.StudentService;
+import org.learning.model.model.Teacher;
+import org.learning.model.service.TeacherService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Objects;
 
-@WebServlet(name = "StudentServlet", value = "/student")
-public class StudentServlet extends HttpServlet {
+@WebServlet(name = "teacherServlet", value = "/teacher")
+public class TeacherServlet extends HttpServlet {
 
-  private final StudentService service;
+  private final TeacherService service;
   private Gson gson = new Gson();
 
 
-  public StudentServlet() {
-    service = new StudentService();
+  public TeacherServlet() {
+    service = new TeacherService();
   }
 
   @Override
@@ -33,12 +33,12 @@ public class StudentServlet extends HttpServlet {
     response.setContentType("text/html");
     PrintWriter printWriter = response.getWriter();
     if (Objects.nonNull(id)) {
-      printWriter.write("<h2>Requested student</h2>");
-      printWriter.write("<p>" + service.findStudentById(Integer.valueOf(id)).toString() + "</p>");
+      printWriter.write("<h2>Requested teacher</h2>");
+      printWriter.write("<p>" + service.findTeacherById(Integer.valueOf(id)).toString() + "</p>");
     } else {
-      printWriter.write("<p>All students:</p>");
-      for (Student student : service.findAllStudents()) {
-        printWriter.write("<p>" + student.toString() + "</p>");
+      printWriter.write("<p>All teachers:</p>");
+      for (Teacher teacher : service.findAllTeachers()) {
+        printWriter.write("<p>" + teacher.toString() + "</p>");
 
       }
     }
@@ -49,14 +49,14 @@ public class StudentServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     try {
-      Student student = gson.fromJson(request.getReader(), Student.class);
-      student = service.createStudent(student);
-      String studentJson = gson.toJson(student);
+      Teacher teacher = gson.fromJson(request.getReader(), Teacher.class);
+      teacher = service.createTeacher(teacher);
+      String teacherJson = gson.toJson(teacher);
 
       PrintWriter out = response.getWriter();
       response.setContentType("application/json");
       response.setCharacterEncoding("UTF-8");
-      out.print(studentJson);
+      out.print(teacherJson);
       out.flush();
     } catch (JsonParseException e) {
       response.setStatus(400);
@@ -69,18 +69,18 @@ public class StudentServlet extends HttpServlet {
   protected void doPut(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     try {
-      Student student = gson.fromJson(request.getReader(), Student.class);
-      if(student.getId() == null) {
+      Teacher teacher = gson.fromJson(request.getReader(), Teacher.class);
+      if(teacher.getId() == null) {
         response.setStatus(400);
         return;
       }
-      student = service.updateStudent(student);
-      String studentJson = gson.toJson(student);
+      teacher = service.updateTeacher(teacher);
+      String teacherJson = gson.toJson(teacher);
 
       PrintWriter out = response.getWriter();
       response.setContentType("application/json");
       response.setCharacterEncoding("UTF-8");
-      out.print(studentJson);
+      out.print(teacherJson);
       out.flush();
     } catch (JsonParseException e) {
       response.setStatus(400);
