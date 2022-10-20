@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Name Form</title>
+  <title>New student form</title>
   <script type="module" src="js/student.js"></script>
 
 </head>

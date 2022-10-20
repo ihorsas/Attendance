@@ -1,5 +1,5 @@
-export function showCreatedObject(data, name) {
-  const div = document.querySelector("#created-student");
+export function showCreatedObject(data, name, id) {
+  const div = document.querySelector(`#${id}`);
   const elementHeader = document.createElement("h2");
   elementHeader.innerText = `\nCreated ${name}:`;
   div.append(elementHeader);
@@ -12,7 +12,7 @@ export function showCreatedObject(data, name) {
 }
 
 // TODO: do not rely on full address instead use relative path ex: /student
-export function postCall(data, name) {
+export function postCall(data, name, createdObjId) {
   fetch(`http://localhost:8080/Attendance_war_exploded/${name}`, {
     method: 'POST',
     headers: {
@@ -23,7 +23,7 @@ export function postCall(data, name) {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
-        showCreatedObject(data, name);
+        showCreatedObject(data, name, createdObjId);
       })
       .catch((error) => {
         console.error('Error:', error);

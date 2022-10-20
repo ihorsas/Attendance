@@ -11,10 +11,13 @@
   <title>Home</title>
 </head>
 <body>
-<h1>Wanna to create new student?</h1>
+<h1>Wanna to create some component?</h1>
 
 <p>
   <a href="student.jsp">Go to create student page</a>
+</p>
+<p>
+  <a href="subject.jsp">Go to create subject page</a>
 </p>
 
 </body>

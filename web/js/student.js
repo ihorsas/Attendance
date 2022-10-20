@@ -11,7 +11,7 @@ export async function createStudent() {
 
   console.log("Data to be saved:" + data);
   console.log("Data to be saved in JSON:" + JSON.stringify(data));
-  postCall(data, "student")
+  postCall(data, "student", "created-student")
 }
 
 document.getElementById("create-student").addEventListener('click', createStudent);
