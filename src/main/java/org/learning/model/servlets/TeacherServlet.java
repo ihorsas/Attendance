@@ -30,19 +30,15 @@ public class TeacherServlet extends HttpServlet {
       throws ServletException, IOException {
     String id = request.getParameter("id");
 
-    response.setContentType("text/html");
-    PrintWriter printWriter = response.getWriter();
+    PrintWriter out = response.getWriter();
+    response.setContentType("application/json");
+    response.setCharacterEncoding("UTF-8");
     if (Objects.nonNull(id)) {
-      printWriter.write("<h2>Requested teacher</h2>");
-      printWriter.write("<p>" + service.findTeacherById(Integer.valueOf(id)).toString() + "</p>");
+      out.print(gson.toJson(service.findTeacherById(Integer.valueOf(id))));
     } else {
-      printWriter.write("<p>All teachers:</p>");
-      for (Teacher teacher : service.findAllTeachers()) {
-        printWriter.write("<p>" + teacher.toString() + "</p>");
-
-      }
+      out.print(gson.toJson(service.findAllTeachers()));
     }
-    printWriter.close();
+    out.flush();
   }
 
   @Override

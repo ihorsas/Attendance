@@ -22,6 +22,9 @@
 <p>
   <a href="teacher.jsp">Go to create teacher page</a>
 </p>
+<p>
+  <a href="attendance.jsp">Go to create attendance page</a>
+</p>
 
 </body>
 </html>

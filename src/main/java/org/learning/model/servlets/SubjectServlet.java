@@ -35,7 +35,7 @@ public class SubjectServlet extends HttpServlet {
     response.setContentType("application/json");
     response.setCharacterEncoding("UTF-8");
     if (Objects.nonNull(id)) {
-      out.print(gson.toJson(service.findSubjectById (Integer.valueOf(id))));
+      out.print(gson.toJson(service.findSubjectById(Integer.valueOf(id))));
     } else {
       out.print(gson.toJson(service.findAllSubjects()));
     }
