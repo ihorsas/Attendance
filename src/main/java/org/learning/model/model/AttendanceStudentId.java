@@ -1,5 +1,6 @@
 package org.learning.model.model;
 
+import com.google.gson.annotations.Expose;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.Builder;
@@ -18,9 +19,11 @@ import java.util.Objects;
 public class AttendanceStudentId implements Serializable {
 
   @Column(name = "attendance_id")
+  @Expose
   private Integer attendanceId;
 
   @Column(name = "student_id")
+  @Expose
   private Integer studentId;
 
   public AttendanceStudentId(Integer attendanceId, Integer studentId) {

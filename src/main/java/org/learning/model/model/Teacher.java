@@ -1,8 +1,10 @@
 package org.learning.model.model;
 
+import com.google.gson.annotations.Expose;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,12 +32,17 @@ public class Teacher {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Expose
   private Integer id;
   @Column(name = "first_name")
+  @Expose
   private String firstName;
   @Column(name = "last_name")
+  @Expose
   private String lastName;
+  @Expose
   private String email;
+  @Expose
   private Date birthday;
 
   @ManyToMany(cascade = {
@@ -50,7 +57,7 @@ public class Teacher {
   private Set<Subject> subjects;
 
 
-  @OneToOne(mappedBy = "teacher")
+  @OneToOne(fetch = FetchType.LAZY, mappedBy = "teacher")
   @ToString.Exclude
   private Attendance attendance;
 

@@ -15,7 +15,7 @@
 <body>
 <div>
     <h3><p>Enter new attendance</p></h3>
-    <p>Birthday:</p>
+    <p>Date:</p>
     <input type="date" id="date">
     <p>Subject:</p>
     <select id="subject"></select>

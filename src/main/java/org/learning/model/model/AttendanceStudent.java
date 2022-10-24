@@ -1,5 +1,6 @@
 package org.learning.model.model;
 
+import com.google.gson.annotations.Expose;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,20 +24,26 @@ import java.util.Objects;
 public class AttendanceStudent {
 
   @EmbeddedId
+  @Expose
   private AttendanceStudentId id;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @MapsId("attendance_id")
   @ToString.Exclude
+  @Expose
   private Attendance attendance;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @MapsId("student_id")
   @ToString.Exclude
+  @Expose
   private Student student;
 
+  @Expose
   private Date date;
+  @Expose
   private String state;
+  @Expose
   private String comment;
 
   public AttendanceStudent(Attendance attendance,

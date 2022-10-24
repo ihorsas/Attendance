@@ -15,10 +15,9 @@ import java.io.PrintWriter;
 import java.util.Objects;
 
 @WebServlet(name = "StudentServlet", value = "/student")
-public class StudentServlet extends HttpServlet {
+public class StudentServlet extends AbstractServlet {
 
   private final StudentService service;
-  private Gson gson = new Gson();
 
 
   public StudentServlet() {

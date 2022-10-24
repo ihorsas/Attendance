@@ -1,5 +1,6 @@
 package org.learning.model.model;
 
+import com.google.gson.annotations.Expose;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,14 +34,20 @@ public class Student {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Expose
   private Integer id;
   @Column(name = "first_name")
+  @Expose
   private String firstName;
   @Column(name = "last_name")
+  @Expose
   private String lastName;
+  @Expose
   private String email;
   @Column(name = "joining_date")
+  @Expose
   private Date joiningDate;
+  @Expose
   private Date birthday;
 
   @ManyToMany(cascade = {

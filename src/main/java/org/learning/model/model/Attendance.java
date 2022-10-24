@@ -1,5 +1,6 @@
 package org.learning.model.model;
 
+import com.google.gson.annotations.Expose;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,13 +29,17 @@ public class Attendance {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Expose
   private Integer id;
+  @Expose
   private Date date;
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "subject_id", referencedColumnName = "id")
+  @Expose
   private Subject subject;
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "teacher_id", referencedColumnName = "id")
+  @Expose
   private Teacher teacher;
 
   @OneToMany(

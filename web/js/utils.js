@@ -6,15 +6,21 @@ export function showCreatedObject(data, name, id) {
 
   for (const [key, value] of Object.entries(data)) {
     let element = document.createElement("p");
-    element.innerText = `\n${name} ${key}: ${value}`
+    element.innerText = `\n${name} ${key}: ${JSON.stringify(value)}`
     div.append(element);
   }
 }
 
+/**
+ * @param {string} nameField
+ * @param data
+ * @param id
+ */
 export async function createSelectWithOptions(data, nameField, id) {
   let select = document.getElementById(id);
-  console.log("Data for select: " + await data)
-  for (const obj of await data) {
+  data = await data;
+  console.log("Data for select: " + data)
+  for (const obj of data) {
     let option = document.createElement("option");
     option.text = obj[nameField];
     option.value = obj["id"];

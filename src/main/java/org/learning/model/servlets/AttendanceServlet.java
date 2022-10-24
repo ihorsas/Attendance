@@ -15,11 +15,9 @@ import java.io.PrintWriter;
 import java.util.Objects;
 
 @WebServlet(name = "AttendanceServlet", value = "/attendance")
-public class AttendanceServlet extends HttpServlet {
+public class AttendanceServlet extends AbstractServlet {
 
   private final AttendanceService service;
-  private Gson gson = new Gson();
-
 
   public AttendanceServlet() {
     service = new AttendanceService();
@@ -40,6 +38,7 @@ public class AttendanceServlet extends HttpServlet {
     }
     out.flush();
   }
+
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
@@ -65,7 +64,7 @@ public class AttendanceServlet extends HttpServlet {
       throws ServletException, IOException {
     try {
       Attendance attendance = gson.fromJson(request.getReader(), Attendance.class);
-      if(attendance.getId() == null) {
+      if (attendance.getId() == null) {
         response.setStatus(400);
         return;
       }

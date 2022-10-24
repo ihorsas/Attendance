@@ -1,6 +1,8 @@
 package org.learning.model.model;
 
+import com.google.gson.annotations.Expose;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,8 +26,11 @@ import java.util.List;
 public class Subject {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Expose
   private Integer id;
+  @Expose
   private String name;
+  @Expose
   private Integer credit;
 
   @ManyToMany(mappedBy = "subjects")
